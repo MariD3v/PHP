@@ -65,5 +65,8 @@
     }
     myTest();
 
-    
+    //TIEMPO Y FECHA
+
+    $fechaHoy = date("Y-m-d"); //con date obtenemos en el formato que queramos una fecha 
+    $fechaMañana = date("Y-m-d", strtotime("+1 day")); //con strtotime podemos sumar o restar fechas
 ?>  
