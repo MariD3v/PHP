@@ -1,21 +1,23 @@
-//Qué opciones disponemos tanto para truncar como para redondear, muestra el resultado de PI tanto redondeado a dos decimales como truncado.
-
+<!--Qué opciones disponemos tanto para truncar como para redondear, muestra el resultado de PI tanto redondeado a dos decimales como truncado.-->
 <!DOCTYPE html>
-<html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reto 1</title>
+</head>
 <body>
-
 <?php
-//TRUNCAR
-$numero1 = 3.1415;
-$numero1 = floor($numero1 *100)/100;
-echo $numero1;
+    $PI = 3.1415;
 
-//REDONDEAR
-$numero2 = 3.1415;
-$numero2 = round($numero2,2);
-printf($numero2);
-?> 
+    //TRUNCAR
+    $numeroTruncate = floor($PI *100)/100;
+    echo $numeroTruncate;
 
+    //REDONDEAR
+    $numeroRound = round($PI,2);
+    printf($numeroRound);
+    ?> 
 </body>
 </html>
 

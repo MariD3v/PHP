@@ -4,23 +4,30 @@
     /* Comentario 
     en varias lineas */
 
-    //PRINT Y ECHO
-    print "Hola"; //Hace return de 1
-    echo "Hola"; //No hace return de nada
+//PRINT Y ECHO
+
+    print "Hola<br>"; //Hace return de 1
+    echo "Hola<br>"; //No hace return de nada
     // Si queremos introducir símbolos como $ o " usamos / antes del símbolo.
 
-    //DATOS
-    $radio=3; // variable númerica, también puede ser NaN o Infinity
+//DATOS
+
+    $numberVariable=3; // variable númerica, también puede ser NaN o Infinity
+    $stringVariable= "Mari";
+    $nullVariable = null;
+    $boolVariable = true;
+    $floatVariable = 2.31;
+
+    define("PI",3.14159); // constante
     $maxInt = PHP_INT_MAX; //Constante de maximo valor
     $minInt = PHP_INT_MIN; //Constante de minimo valor
-    define("PI",3.14159); // constante
-    echo "La longitud de la circunferencia con radio $radio es ".(2*PI*$radio); //En PHP se concatena con . o introduciendo la variable dentro del texto con $
-    echo "<br/>"; // un salto de línea
-    echo "My radio is $radio!";  //Concatenación correcta
-    echo "My radio is " . $radio . "!";  //Concatenación correcta
+
+    echo "La longitud de la circunferencia con radio $numberVariable es ".(2*PI**$numberVariable)."<br>"; //En PHP se concatena con . o introduciendo la variable dentro del texto con $
+    echo "<br>"; // un salto de línea
+    echo "My number is $numberVariable!<br>";  //Concatenación correcta
+    echo "My number is " . $numberVariable . "!<br>";  //Concatenación correcta
     
-	//Función is_(tipodedato) para saber si es o no ese tipo de dato.Devuelve un 1 si es true y nada si es false
-    is_float(4);
+    is_float(4); //para saber si es o no ese tipo de dato.Devuelve un 1 si es true y nada si es false
     is_integer("a");
     is_string("a"); 
     is_numeric(4); 
@@ -28,7 +35,8 @@
     gettype(4); //Obtener el tipo de dato
     var_dump(2); //Obtener el tipo de dato y el dato
 
-    //STRINGS
+//STRINGS
+
     strlen("hola"); //Obtenemos el número de carácteres
     str_word_count("Hola mari"); //Obtenemos en número de palabras
     strpos("hola mari como estas", "como"); //busca una palabra, si la encuentra devuelve la posición de la palabra. 
@@ -37,10 +45,12 @@
     str_replace("hola mari", "mari", "miki"); //reemplaza una palabra por otra
     strrev("holi"); //da la vuelta al texto
     trim("hola mari"); //quita los espacios en blanco
+    strstr("hola mari", "m"); //Devuelve la cadena solo a partir del carácter indicado
     explode(" ", "Hola mari"); //Hace un array, utilizadon el separador que elijamos
     substr("Hola mari hellow", 6, 5); //Corta el string en la posición 6 y sigue 5 posiciones más. Si no se pone el fin, cogerá todo hasta el final.
 
-    //CAST
+//CAST
+
     $x = 5;
     $x = (string) $x; //Convertir a String
     $x = (int) $x; //Convertir a int
@@ -49,24 +59,91 @@
     $x = (array) $x; //Array
     $x = (object) $x; //Object
 
-    //FUNCIONES Y Alcance de las variables (local, estática y global)
+//ARRAY
+
+    $cars = array("Volvo","BMW","Toyota");
+
+    $cars[0]; //acceder a un elemento
+    count($cars); //longitud de un array
+
+//MAPA
+
+    $telefono = array("Maria"=>"679769740", "Miki" => "679769741"); //Se declara como array pero con clave => valor
+    $telefono["Maria"]; //Acceder a un value
+    $telefono["Panchon"]="679769742"; //Añadir un elemento
+    $telefono[]="679769743"; //Cuando no se añade clave a un valor, automanticamente se añade un indice autoincremental
+
+    foreach($telefono as $clave => $valor) {
+        echo $clave ."->". $valor ;
+    }
+
+//IF ELSEIF ELSE
+
+    if($numberVariable == 0){
+        echo"El número $numberVariable es 0<br>";
+    } else if ($numberVariable % 2 ==0){
+        echo "El número $numberVariable es par<br>";
+    } else {
+        echo "El número $numberVariable es impar<br>";
+    }
+
+    echo "El número $numberVariable ".($numberVariable % 2 ==0 ? " es par<br>": " es impar<br>"); //Operacion ternaria de if else (En una linea)
+    echo "El número $numberVariable ".($numberVariable == 0 ? " es cero<br>" : ($numberVariable % 2 == 0 ? " es par<br>": " es impar<br>")); //Operacion ternaria de if else if else (En una linea)
+
+//MENUS (switch)
+
+    $opcion = 1;
+    switch($opcion){
+        case 1: 
+            echo "Has elegido la opción 1<br>";
+        case 2:
+            echo "Has elegido la opción 2<br>";
+        default:
+            echo "No has elegido ni la opción 1 ni la 2<br>";
+    }
+
+//BUCLES
+
+    $variable = 0;
+
+    while($variable<=10){
+        echo $variable++."<br/>";
+    }
+
+    do {
+        echo $variable++."<br/>";
+    } while($variable<=10);
+
+    for($i=0; $i<10; $i++){
+        echo "$i<br/>";
+    }
+
+//FUNCIONES Y Alcance de las variables (local, estática y global)
 
     $variable = 3; //Variable de alcance global
 
     function myTest() {
         global $variable; //Para acceder a la variable que se encuentra fuera de la función, debemos usar la funcion "global"
-        echo "<p>Variable: $variable</p>"; 
+        echo "<p>Variable: $variable</p><br>"; 
     }
     myTest();
 
     function myTest2() {
         static $variable2 = 3; //Cuando una variable NO es static, se elimina al finalizar la función. Con static, la variable puede usarse fuera de la función 
-        echo "<p>Variable: $variable2</p>"; 
+        echo "<p>Variable: $variable2</p><br>"; 
     }
-    myTest();
+    myTest2();
 
-    //TIEMPO Y FECHA
+//TIEMPO Y FECHA
 
-    $fechaHoy = date("Y-m-d"); //con date obtenemos en el formato que queramos una fecha 
+    $fechaHoy = date("l, Y-m-d\th:i:s"); //con date obtenemos en el formato que queramos una fecha l=dia de la semana
     $fechaMañana = date("Y-m-d", strtotime("+1 day")); //con strtotime podemos sumar o restar fechas
+    $fecha = mktime(10,15,12,10,3,2019); //Otra forma de poner una fecha
+    $date = date_create("2013-03-15"); //Otra forma de poner una fecha
+    $date2 = date_create("2013-01-10");
+    $diff= date_diff($date, $date2); //Calcula la diferencia entre 2 fechas
+
+    for($dia=strtotime($fechaHoy), $cont=1;$cont<=10;$dia=strtotime("+1day",$dia), $cont++) {
+        echo date("d-m-Y",$dia)."<br/>";
+    }
 ?>  
