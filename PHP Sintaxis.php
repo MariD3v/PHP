@@ -4,6 +4,10 @@
     /* Comentario 
     en varias lineas */
 
+//ARCHIVOS PHP
+
+include "archivo.php"; //Así añadimos un archivo php a este archivo
+
 //PRINT Y ECHO
 
     print "Hola<br>"; //Hace return de 1
@@ -46,7 +50,7 @@
     strrev("holi"); //da la vuelta al texto
     trim("hola mari"); //quita los espacios en blanco
     strstr("hola mari", "m"); //Devuelve la cadena solo a partir del carácter indicado
-    explode(" ", "Hola mari"); //Hace un array, utilizadon el separador que elijamos
+    $array = explode(" ", "Hola mari"); //Hace un array, utilizadon el separador que elijamos
     substr("Hola mari hellow", 6, 5); //Corta el string en la posición 6 y sigue 5 posiciones más. Si no se pone el fin, cogerá todo hasta el final.
 
 //CAST
@@ -62,9 +66,9 @@
 //ARRAY
 
     $cars = array("Volvo","BMW","Toyota");
-
     $cars[0]; //acceder a un elemento
     count($cars); //longitud de un array
+    $texto = implode(" ", $cars); //Convierte un array en un string, eligiendo un separador
 
 //MAPA
 
@@ -123,7 +127,7 @@
     $variable = 3; //Variable de alcance global
 
     function myTest() {
-        global $variable; //Para acceder a la variable que se encuentra fuera de la función, debemos usar la funcion "global"
+        global $variable; //Para poder cambiar una variable y usarla fuera de la función
         echo "<p>Variable: $variable</p><br>"; 
     }
     myTest();
@@ -133,6 +137,32 @@
         echo "<p>Variable: $variable2</p><br>"; 
     }
     myTest2();
+
+    function sumaVariable() {
+        $total=0;
+        for($i=0;$i<func_num_args();$i++) { //func_num_args() cuenta cuantos parámetros hemos introducido en la función
+            $total=$total+func_get_arg($i);
+        }
+        return $total;
+     }
+     echo sumaVariable(1,2,3);
+     echo sumaVariable(1,2,3,4,5,13); //Podemos introducir tantos valores como queramos gracias a func_num_args()
+    
+     function concatena(&$cad1, $cad2) { //Cuando ponemos & estamos indicando que $cad1 es global, de tal forma que se modifica en todo el archivo
+         $cad1=$cad1.$cad2;
+      }
+     $cadena1="Hola";
+     $cadena2=", mundo";
+     concatena($cadena1, $cadena2);
+     echo $cadena1; //Si hacemos echo, vemos que ha cambiado
+
+     function concatena4($cad2) {
+        $GLOBALS["cadena1"]=$GLOBALS["cadena1"].$cad2; //El array $GLOBALS contiene por defecto todas las variables del archivo, de manera que si queremos acceder a una variable que esté fuera de la función debemos usar GLOBALS
+    }
+    $cadena1="Hola";
+    $cadena2=", mundo";
+    concatena4($cadena2); //Hemos cambiado el valor de $cadena1 pasandole el parámetro $cadena2
+    echo $cadena1;//Si hacemos echo, vemos que ha cambiado
 
 //TIEMPO Y FECHA
 
