@@ -69,6 +69,20 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
     $cars[0]; //acceder a un elemento
     count($cars); //longitud de un array
     $texto = implode(" ", $cars); //Convierte un array en un string, eligiendo un separador
+    array_unique($cars); //Elimina los elementos duplicados
+    var_dump($cars); //Muestra el array sin necesidad de for
+    array_push($cars, "KIA", "Lambo"); //Añade valores al array
+    array_splice($cars, 1, 1); //Quita valores del array, eligiendo la posición donde empieza a quitar y eligiendo cuantos quitar
+    unset($cars[1]); //Quita un valor
+    array_pop($cars); //Elimina el último valor
+    array_shift($cars); //Elimina el primer valor
+    rsort($cars); //Ordena el array descendente
+    sort($cars); //Ordena el array ascendentemente
+    in_array("Volvo",$cars); //Comprueba si hay un elemento en el array
+
+    foreach($cars as $coche) {
+        echo $coche;
+    }
 
 //MAPA
 
@@ -76,6 +90,21 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
     $telefono["Maria"]; //Acceder a un value
     $telefono["Panchon"]="679769742"; //Añadir un elemento
     $telefono[]="679769743"; //Cuando no se añade clave a un valor, automanticamente se añade un indice autoincremental
+
+    array_key_exists('usuario', $telefono); //Comprueba si hay una key
+    unset($telefono["Maria"]); //Elimina un valor y su clave
+    asort($telefono); // Ordena ascendentemente por valor
+    ksort($telefono); // Ordena ascendentemente por clave
+    arsort($telefono); // Ordena descendentemente por valor
+    krsort($telefono); // Ordena descendentemente por clave
+    array_reverse($telefono); //Da la vuelta al array
+    array_change_key_case($telefono,CASE_UPPER); //Pone las keys en mayus/minus
+    array_combine($fname,$age); //Crea un mapa usando 1 array para las keys y 1 array para las values
+    array_keys($telefono); //Muestra todas las claves de un array
+    array_values($telefono); //Muestra todos los valores de un array
+    count($telefono); //Cuenta cuantos elementos hay
+    
+    
 
     foreach($telefono as $clave => $valor) {
         echo $clave ."->". $valor ;

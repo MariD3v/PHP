@@ -19,10 +19,19 @@ Usa esta posibilidad para conseguir que con un solo return y una sola variable s
 </head>
 <body>
     <?php
-    function Calculadora($arrayNumbers){
-        $min = 
-    }
 
+    function Calculadora($arrayNumbers){
+        $min = min($arrayNumbers);
+        $max = max($arrayNumbers);
+        $med = array_sum($arrayNumbers)/count($arrayNumbers);
+
+        return [$min,$max,$med];
+    }
+    $array = array(12,3,41,2,4,5,5,3);
+    $resultado = Calculadora($array);
+    echo "Minima:".$resultado[0];
+    echo "<br>Máxima:".$resultado[1];
+    echo "<br>Media:".$resultado[2];
 
     ?>
 </body>
