@@ -193,6 +193,23 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
     concatena4($cadena2); //Hemos cambiado el valor de $cadena1 pasandole el parámetro $cadena2
     echo $cadena1;//Si hacemos echo, vemos que ha cambiado
 
+//CLASES Y OBJETOS
+    class Car {
+        public $color;
+        public $model;
+        public function __construct($color, $model) {
+        $this->color = $color;
+        $this->model = $model;
+        }
+        public function message() {
+        return "My car is a " . $this->color . " " . $this->model . "!";
+        }
+    }
+    
+    $myCar = new Car("red", "Volvo");
+    var_dump($myCar);
+    $myCar->message();
+
 //TIEMPO Y FECHA
 
     $fechaHoy = date("l, Y-m-d\th:i:s"); //con date obtenemos en el formato que queramos una fecha l=dia de la semana
