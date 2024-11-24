@@ -21,6 +21,7 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
     $nullVariable = null;
     $boolVariable = true;
     $floatVariable = 2.31;
+    $ramdonNumber = rand(1000, 5000); //Numero ramdon entre 1000 y 5000
 
     define("PI",3.14159); // constante
     $maxInt = PHP_INT_MAX; //Constante de maximo valor
