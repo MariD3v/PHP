@@ -23,7 +23,7 @@ $cancionesNirvana = array("Something in the way", "Smells like teen spirit", "Ra
 $nirvana = array("Cantante" => "Kurt","Guitarrista" => "Pat","Batería" => "Dave", "Canciones" => $cancionesNirvana);
 
 function cancionesBanda($band){
-    echo "Canciones:<br>";
+    echo "<br>Canciones:<br>";
     $songs = $band["Canciones"];
     foreach ($songs as $song){
         echo $song."<br>";
@@ -46,7 +46,7 @@ function info($listBand, $band = null){
 
     $integrantes = $band;
     unset($integrantes["Canciones"]);
-    echo "Integrantes:<br>";
+    echo "<br>Integrantes:<br>";
     foreach ($integrantes as $cargo => $integrante){
         echo $cargo.":".$integrante."<br>";
     }
@@ -64,10 +64,12 @@ function cancionesBandas($listBand, $number = null){
         }
     } else {
         foreach ($listBand as $band){
-            if ($number <= count($band["Canciones"])){
+            if ($number <= count($band["Canciones"]) && $number > 0){
                 for ($i = 0;$i<$number;$i++){
                     echo "<br>".$band["Canciones"][$i];
                 }
+            } else {
+                echo "<br>bad number of songs";
             }
         }
     }
@@ -75,3 +77,27 @@ function cancionesBandas($listBand, $number = null){
 
 cancionesBandas($listBands);
 cancionesBandas($listBands,3);
+cancionesBandas($listBands,0);
+cancionesBandas($listBands,10);
+
+function baterias($listBand, $categoria = null){
+    if ($categoria == null){
+        echo "<br>Baterías:<br>";
+        foreach ($listBand as $band){
+            echo "<br>".$band["Batería"];
+        }
+    } else {
+        echo "<br>$categoria:";
+        foreach ($listBand as $band){
+            if (array_key_exists($categoria,$band)){
+                echo "<br>".$band[$categoria];
+            } else {
+                echo "<br>Categoria no encontrada en el grupo";
+            }
+        }
+    } 
+}
+
+baterias($listBands,"Guitarrista");
+baterias($listBands,"Cantante");
+baterias($listBands,"Nada");

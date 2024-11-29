@@ -186,8 +186,8 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
      echo sumaVariable(1,2,3);
      echo sumaVariable(1,2,3,4,5,13); //Podemos introducir tantos valores como queramos gracias a func_num_args()
     
-     function concatena(&$cad1, $cad2) { //Cuando ponemos & estamos indicando que $cad1 es global, de tal forma que se modifica en todo el archivo
-         $cad1=$cad1.$cad2;
+     function concatena(&$cad1, $cad2, $cad3=null) { //Cuando ponemos & estamos indicando que $cad1 es global, de tal forma que se modifica en todo el archivo
+         $cad1=$cad1.$cad2; //si ponemos que cad3 = null, significa que no es necesario meter ese parametro, es opcional al llamar a la funcion
       }
      $cadena1="Hola";
      $cadena2=", mundo";
