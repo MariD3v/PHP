@@ -21,9 +21,11 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
     $nullVariable = null;
     $boolVariable = true;
     $floatVariable = 2.31;
-    $ramdonNumber = rand(1000, 5000); //Numero ramdon entre 1000 y 5000
 
     define("PI",3.14159); // constante
+    echo PI; //usar constante
+    define ("cars",["kia","volvo"]); //constante de array
+    echo cars[0];
     $maxInt = PHP_INT_MAX; //Constante de maximo valor
     $minInt = PHP_INT_MIN; //Constante de minimo valor
 
@@ -32,7 +34,8 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
     echo "My number is $numberVariable!<br>";  //Concatenación correcta
     echo "My number is " . $numberVariable . "!<br>";  //Concatenación correcta
     
-    is_float(4); //para saber si es o no ese tipo de dato.Devuelve un 1 si es true y nada si es false
+    //para saber si es o no ese tipo de dato.Devuelve un 1 si es true y nada si es false
+    is_float(4); 
     is_integer("a");
     is_string("a"); 
     is_numeric(4); 
@@ -53,6 +56,13 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
     strstr("hola mari", "m"); //Devuelve la cadena solo a partir del carácter indicado
     $array = explode(" ", "Hola mari"); //Hace un array, utilizadon el separador que elijamos
     substr("Hola mari hellow", 6, 5); //Corta el string en la posición 6 y sigue 5 posiciones más. Si no se pone el fin, cogerá todo hasta el final.
+
+//NUMBERS
+
+    sqrt(64); //raiz cuadrada
+    abs(43); //absoluto
+    round(0.60); //redondear
+    rand(1000, 5000); //Numero ramdon entre 1000 y 5000
 
 //CAST
 
@@ -104,8 +114,6 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
     array_keys($telefono); //Muestra todas las claves de un array
     array_values($telefono); //Muestra todos los valores de un array
     count($telefono); //Cuenta cuantos elementos hay
-    
-    
 
     foreach($telefono as $clave => $valor) {
         echo $clave ."->". $valor ;
@@ -210,6 +218,10 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
     $myCar = new Car("red", "Volvo");
     var_dump($myCar);
     $myCar->message();
+
+    foreach ($myCar as $x => $y){
+        echo "$x = $y";
+    }
 
 //TIEMPO Y FECHA
 
