@@ -206,7 +206,7 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
     class Car {
         public $color;
         public $model;
-        public function __construct($color, $model) {
+        public function __construct(string $color,string $model) {
         $this->color = $color;
         $this->model = $model;
         }
@@ -235,4 +235,33 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
     for($dia=strtotime($fechaHoy), $cont=1;$cont<=10;$dia=strtotime("+1day",$dia), $cont++) {
         echo date("d-m-Y",$dia)."<br/>";
     }
+
+//EXPRESIONES REGULARES
+
+    preg_match("/patrón/", $texto); //Busca si el patrón existe en el texto. Devuelve 1 si encuentra coincidencias, 0 si no.
+    preg_match_all("/patrón/", $texto); //Busca todas las coincidencias del patrón en el texto. Devuelve un array con las coincidencias.
+    preg_replace("/patrón/", "reemplazo", $texto); //Reemplaza todas las coincidencias del patrón en el texto con el texto de reemplazo.
+    preg_split("/patrón/", $texto); //Divide el texto en un array usando el patrón como delimitador.
+    preg_filter("/patrón/", "reemplazo", $texto); //Similar a preg_replace pero solo devuelve el texto si hubo reemplazos.
+
+    //MODIFICADORES COMUNES
+    // i: Ignora mayúsculas y minúsculas.
+    // m: Modo multilinea (afecta ^ y $ para que consideren líneas individuales).
+    // s: Permite que el punto (.) coincida con caracteres de nueva línea.
+    // u: Interpreta el patrón como UTF-8.
+
+    //EJEMPLOS
+    preg_match("/^Hola/i", "hola mundo"); //Coincide "Hola" al inicio de la cadena, ignorando mayúsculas.
+    preg_match("/mundo$/", "Hola mundo"); //Coincide "mundo" al final de la cadena.
+    preg_match("/\d+/", "Tengo 45 años"); //Coincide con uno o más dígitos.
+    preg_match("/[a-zA-Z]/", "123abc"); //Coincide con cualquier letra (mayúscula o minúscula).
+    preg_match("/[^0-9]/", "123abc"); //Coincide con cualquier carácter que no sea un dígito.
+    preg_match("/\bpalabra\b/", "palabra clave"); //Coincide con la palabra exacta delimitada por espacios o signos de puntuación.
+    preg_match("/palabra\w*/", "palabra123"); //Coincide "palabra" seguido de cualquier cantidad de caracteres alfanuméricos.
+
+    //VALIDACIÓN
+    preg_match("/^[a-zA-Z0-9]{5,10}$/", "usuario123"); //Valida entre 5 y 10 caracteres alfanuméricos.
+    preg_match("/^\d{3}-\d{2}-\d{4}$/", "123-45-6789"); //Valida un formato de número como SSN.
+    preg_match("/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i", "correo@ejemplo.com"); //Valida un correo electrónico.
+
 ?>  
