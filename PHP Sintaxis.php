@@ -264,4 +264,31 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
     preg_match("/^\d{3}-\d{2}-\d{4}$/", "123-45-6789"); //Valida un formato de número como SSN.
     preg_match("/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i", "correo@ejemplo.com"); //Valida un correo electrónico.
 
+//SESIONES
+
+    session_start();
+
+    session_unset(); // Eliminar todas las variables de sesion
+
+    session_destroy();// Destruir la sesion
+
+    $_SESSION["favcolor"] = "yellow"; //Crear una variable en la sesion ["clave"] = "valor";
+    print_r($_SESSION);
+
+//COOKIES
+
+    $cookie_name = "user";
+    $cookie_value = "John Doe";
+
+    //Crear cookie
+    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+
+    setcookie("user", "", time() - 3600); // Borrar la cookie poniendo fecha antigua
+
+    if(!isset($_COOKIE[$cookie_name])) {
+    echo "Cookie named '" . $cookie_name . "' no esta creada";
+    } else {
+    echo "Cookie '" . $cookie_name . "' esta creada!<br>";
+    echo "Valor: " . $_COOKIE[$cookie_name];
+    }
 ?>  
