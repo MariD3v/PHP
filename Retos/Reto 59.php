@@ -15,7 +15,27 @@
 </head>
 <body>
     <?php
-        
-    ?>
+    session_start(); 
+
+    if (!isset($_COOKIE["user_id"])) {
+
+        $user_id = uniqid("user_");
+
+        setcookie("user_id", $user_id, time() + (24 * 60 * 60), "/");
+        $_SESSION[$user_id] = 1;
+
+        echo "Bienvenido a nuestra página por primera vez. Esta es tu primera visita.";
+    } else {
+        $user_id = $_COOKIE["user_id"];
+
+        if (isset($_SESSION[$user_id])) {
+            $_SESSION[$user_id]++;
+        } else {
+            $_SESSION[$user_id] = 1;
+        }
+
+        echo "Bienvenido nuevamente. Has visitado esta página " . $_SESSION[$user_id] . " veces.";
+    }
+?>
 </body>
 </html>
