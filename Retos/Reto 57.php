@@ -9,26 +9,12 @@
     <title>Reto 57</title>
 </head>
 <body>
-    <form action="Reto 57.php" method="POST">
+    <form action="Reto 57 Bienvenida.php" method="POST">
         <label>Usuario:</label>
         <input type="text" name="user"/>
         <label>Contraseña:</label>
         <input type="password" name="pass"/>
         <input type="submit" name="submit"/>
     </form>
-    <?php
-        if(isset($_POST["submit"]) && !empty($_POST["pass"]) && !empty($_POST["user"])){
-            session_start();
-            if($_POST["user"]== "mari" && $_POST["pass"] == "1234"){
-                $_SESSION["user"] = $_POST["user"];
-                $_SESSION["pass"] = $_POST["pass"];
-                echo ("Bienvenido/a ".$_POST["user"]);
-            } else {
-                echo ("Error en la autenticación");
-            }
-        } else {
-            echo ("Rellena los campos vacíos");
-        }
-    ?>
 </body>
 </html>
