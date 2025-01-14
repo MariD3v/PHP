@@ -1,0 +1,194 @@
+:root {
+    --sbg-color:#141414;
+    --bg-color: #333;
+    --bgl-color:rgb(77, 77, 77);
+    --lighter-color:#deeef8;
+    --ll-color:rgb(205, 231, 244);
+    --l-color: #adcae3;
+    --lm-color: #83b0cf;
+    --m-color: #6f99b6;
+    --md-color: #507496;
+    --d-color: #41688d;
+}
+
+body{
+    background-color: #333;
+}
+
+/*Register.php y login.php*/
+
+#logoRegisterContainer{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+#logoRegisterContainer a {
+    display: flex;
+    width: 260px;
+    background-color: var(--ll-color);
+    border-radius: 4px;
+    padding: 8px;
+    transition: background-color 0.3s; 
+    box-shadow: 2px 2px 3px var(--sbg-color);
+}
+
+#logoRegisterContainer a img{
+    height: 40px;
+}
+
+#logoRegisterContainer a:hover {
+    background-color: var(--l-color);
+}
+
+#regisContainer{
+    background-color: var(--lighter-color);
+    border-radius: 5px;
+    margin: 10px 30%;
+    padding: 10px 50px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 70px 70px 70px 70px 70px 70px 70px 60px;
+    gap: 10px;
+    justify-content: center;
+    box-shadow: 1px 1px 3px var(--sbg-color);
+}
+
+#loginContainer{
+    background-color: var(--lighter-color);
+    border-radius: 5px;
+    margin: 10px 30%;
+    padding: 10px 50px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 70px 70px 70px 70px 60px;
+    gap: 10px;
+    justify-content: center;
+    box-shadow: 1px 1px 3px var(--sbg-color);
+}
+
+
+
+#regisContainer *,#loginContainer *{
+    display: block;
+    width: 100%;
+}
+
+#tituloFormularioRL{
+    color: var(--bg-color);
+    font-size:33px;
+    margin:10px 0;
+    text-align: center;
+}
+
+#regisContainer input[type=text],#regisContainer input[type=password],#loginContainer input[type=text],#loginContainer input[type=password]{
+   height: 30px;
+   border: none;
+   border-radius: 5px;
+}
+
+#regisContainer p, #loginContainer p{
+    margin:0px;
+}
+
+#regisContainer label, #loginContainer label{
+    margin: 2px;
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--bgl-color);
+}
+
+#regisContainer #parrafoError, #loginContainer #parrafoError{
+    margin: 2px;
+    font-size: 13px;
+    color:rgb(255, 0, 0);
+}
+
+#registrarse, #login{
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 17px;
+    height: 40px;
+    color: white;
+    background-color: var(--d-color);
+    box-shadow: 1px 1px 2px var(--bg-color);
+    transition: background-color 0.4s; 
+}
+
+#registrarse:hover, #login:hover{
+    background-color: var(--md-color);
+    cursor: pointer;
+}
+
+#registrarse:active, #login:active{
+    background-color: var(--m-color);
+}
+
+/*index.php*/
+
+#gestor-container{
+    margin: 40px 11%;
+    display: grid;
+    grid-template-columns: 0.5fr 2fr;
+    grid-template-rows: 1fr;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px var(--sbg-color);
+    color: var(--bg-color);
+}
+
+#gestor-container aside{
+    text-align: center;
+    background-color: white;
+    padding: 50px 20px;
+    border-radius: 5px 0 0 5px;
+}
+
+#tareas-container{
+    background-color: var(--lighter-color);
+    padding: 20px;
+    border-radius: 0 5px 5px 0;
+}
+
+.tarea{
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.titulo{
+    font-weight: bold;
+    font-size: 22px;
+    margin: 10px;
+}
+
+.button{
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 7px;
+    margin-left: 7px;
+    margin-right: 7px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: var(--d-color);
+    background-color: var(--l-color);
+    transition: background-color 0.1s;
+    box-shadow: 1px 1px 3px var(--l-color);
+    border: none;
+}
+
+.button:hover{
+    background-color: var(--lighter-color);
+    box-shadow: 1px 1px 3px var(--lighter-color);
+}
+
+#form{
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.parrafoError{
+    color: red;
+}
