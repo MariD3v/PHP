@@ -41,11 +41,11 @@ include("../server/gestor.php");
                     <input type="hidden" name="codigo_tarea" value=<?php echo $tarea["codigo_tarea"]?>>
                     <label class="titulo"><?php echo $tarea["titulo"]?></label>
                     <label>Creada: <?php echo $tarea["fecha_creacion"]?></label>
-                    <label>Vence: <?php echo $tarea["fecha_vencimiento"]?></label>
+                    <?php if(new DateTime($tarea["fecha_vencimiento"]) < new DateTime()){echo "<label style='color:red'>Vencida: ".$tarea["fecha_vencimiento"]."</label>";} else {echo "<label>Vence: ".$tarea["fecha_vencimiento"]."</label>";}?>
                     <input type="submit" name="editar" value ="Editar" class="button"/>
                     <input type="submit" name="borrar" value ="borrar" class="button"/>
                     <p class="descripcion"><?php echo $tarea["descripcion"]?></p>
-                    <label>Completada: <?php if($tarea["completada"]==0){echo ("NO");} else {echo ("SI");}?></label> 
+                    <?php if($tarea["completada"] == 0 ){echo "<label style='color:red'>Completada: NO</label>";} else {echo "<label style='color:green'>Completada: SI</label>";}?>
                     <input type="submit" name="completar" value ="Completar" class="button"/>
                 </form>
             <?php }} ?>
