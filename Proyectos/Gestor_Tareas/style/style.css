@@ -189,6 +189,14 @@ body{
     padding: 20px;
 }
 
+.inputForm{
+    width: 100%;
+    height: 30px;
+    border: 1px solid var(--lm-color);
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
 .parrafoError{
     color: red;
 }

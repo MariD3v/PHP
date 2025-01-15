@@ -26,11 +26,11 @@ include("../server/gestor.php");
         <input type="button" value="+" id="abrirForm" class="button"/>
         <form method="POST" action="index.php" style="display:block" id="form">
             <label>Titulo:</label>
-            <input type="text" name="titulo" placeholder="Título"/>
+            <input type="text" name="titulo" placeholder="Título" value="<?php if(isset($_POST["editar"])){echo $_SESSION["titulo"];}?>" class="inputForm"/>
             <label>Descripción:</label>
-            <input type="text" name="descripcion" placeholder="Descripción"/>
+            <input type="text" name="descripcion" placeholder="Descripción" value="<?php if(isset($_POST["editar"])){echo $_SESSION["descripcion"];}?>" class="inputForm"/>
             <label>Fecha de vencimiento:</label>
-            <input type="text" name="vencimiento" placeholder="Formato AAAA-MM-DD HH:MM:SS"/>
+            <input type="text" name="vencimiento" placeholder="Formato AAAA-MM-DD HH:MM:SS" value="<?php if(isset($_POST["editar"])){echo $_SESSION["fecha_vencimiento"];}?>" class="inputForm"/>
             <input type="submit" name="crear" value="Crear" class="button"/>
             <p class="parrafoError"><?php if(isset($_GET['error'])){echo $_GET['error'];}?></p>
         </form>
