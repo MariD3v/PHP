@@ -9,6 +9,17 @@ if(!isset($_SESSION['logged_in'])){
     exit();
 }
 
+
+//Borrar tareas
+
+if(isset($_POST["borrar"])){
+    $codigo_tarea = $_POST["codigo_tarea"];
+
+    $stmt = $conn ->prepare("DELETE FROM tarea WHERE codigo_tarea=?;");
+    $stmt->bind_param('i',$codigo_tarea);
+    $stmt->execute();
+}
+
 //Crear tareas
 
 if(isset($_POST["crear"])){
@@ -30,12 +41,6 @@ if(isset($_POST["crear"])){
         $stmt->bind_param('ssssii',$titulo,$descripcion,$fechac,$fechav,$completada,$codigo_usuario);
         $stmt->execute();
     }
-}
-
-//Borrar tareas
-
-if(isset($_POST["borrar"])){
-    
 }
 
 //Mostrar tareas

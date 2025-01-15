@@ -38,6 +38,7 @@ include("../server/gestor.php");
             <?php if ($tarea_consulta->num_rows == 0) {echo "<h1>No hay tareas</h1>";} 
                 else {while ($tarea = $tarea_consulta -> fetch_assoc()){ ?>
                 <form action="index.php" method="POST" class="tarea">
+                    <input type="hidden" name="codigo_tarea" value=<?php echo $tarea["codigo_tarea"]?>>
                     <label class="titulo"><?php echo $tarea["titulo"]?></label>
                     <label>Creada: <?php echo $tarea["fecha_creacion"]?></label>
                     <label>Vence: <?php echo $tarea["fecha_vencimiento"]?></label>
