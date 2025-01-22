@@ -291,4 +291,44 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
     echo "Cookie '" . $cookie_name . "' esta creada!<br>";
     echo "Valor: " . $_COOKIE[$cookie_name];
     }
+
+//AJAX
+    //Se utiliza AJAX para combinar JS y PHP. Y poder validar por ejemplo, formularios con php sin recargar la página
+    /*<script> //Por ejemplo, metemos este script en html
+    function showHint(str) {
+        var xmlhttp = new XMLHttpRequest(); //Creamos una peticion
+        xmlhttp.onreadystatechange = function() { //Preparamos la peticion
+            if (this.readyState == 4 && this.status == 200) { //Si la peticion es correcta
+                document.getElementById("span").innerHTML = this.responseText; //this.responseText es la respuesta de php
+            }
+        };
+        xmlhttp.open("GET", "gethint.php?q=" + str, true); //Abrimos la peticion, pasamos el parámetro q a php
+        xmlhttp.send(); //Enviamos la peticion
+    }
+    </script>*/
+    //Así seria el html
+    /*
+    <body>
+        <form action="">
+            <label for="fname">First name:</label>
+            <input type="text" id="fname" name="fname" onkeyup="showHint(this.value)"> //Al introducir un caracter se ejecuta showHint
+        </form>
+        <p>Suggestions: <span id="span"></span></p>
+    </body>
+    */
+    //Asi seria el php
+    $q = $_REQUEST["q"]; //Cogemos el parámetro de la url
+
+    $texto = "";
+    $a = array("Mari","Meri","Miki");
+    if ($q !== "") { //Si el parámetro no está vacío
+        foreach($a as $name) {
+            if ($texto === "") {
+                $texto = $name;
+            } else {
+                $texto .= ", $name";
+            }
+        }
+    }
+    echo $texto === "" ? "Sin sugerencias" : $texto;
 ?>  
