@@ -1,5 +1,5 @@
 <?php
-/*Verificación de URLs:
+/*Verificación de DNI:
 a. Escribe una expresión regular para validar un DNI:
     i. Que tenga 8 dígitos.
     ii. Que acabe con una letra.

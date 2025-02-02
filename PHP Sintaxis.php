@@ -203,25 +203,56 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
     echo $cadena1;//Si hacemos echo, vemos que ha cambiado
 
 //CLASES Y OBJETOS
-    class Car {
-        public $color;
-        public $model;
-        public function __construct(string $color,string $model) {
-        $this->color = $color;
-        $this->model = $model;
-        }
-        public function message() {
-        return "My car is a " . $this->color . " " . $this->model . "!";
-        }
-    }
-    
-    $myCar = new Car("red", "Volvo");
-    var_dump($myCar);
-    $myCar->message();
+    class FiguraGeometrica {
+        protected $nombre;
 
-    foreach ($myCar as $x => $y){
-        echo "$x = $y";
+        function __construct(string $nombre) {
+        $this->nombre = $nombre;
+        }
+        function getNombre() {
+        return $this->nombre;
+        }
+        public function calcularArea() { // Método abstracto, debe ser implementado en las subclases
+            throw new Exception("El método calcularArea() debe ser implementado en la subclase");
+        }
+
+        public function mostrarInformacion() {
+            echo "La figura es ". $this->nombre;
+        }
     }
+
+    class Circulo extends FiguraGeometrica{
+        private $radio;
+
+        function __construct(string $nombre, float $radio) {
+        $this->nombre = $nombre;
+        $this->radio = $radio;
+        }
+        public function calcularArea() {
+            return M_PI*$this->radio**2;
+        }
+    }
+
+    class Rectangulo extends FiguraGeometrica{
+        private $base;
+        private $altura;
+
+        function __construct(string $nombre, int $base, int $altura) {
+        $this->nombre = $nombre;
+        $this->base = $base;
+        $this->altura = $altura;
+        }
+        public function calcularArea() {
+            return $this->base*$this->altura;
+        }
+    }
+
+    $circulo1 = new Circulo("circulo", 14);
+    $rectangulo1 = new Rectangulo("rectangulo", 14,10);
+    $areacirculo = $circulo1->calcularArea();
+    echo "El area del circulo es $areacirculo";
+    $arearectangulo = $rectangulo1->calcularArea();
+    echo "El area del circulo es $arearectangulo";
 
 //TIEMPO Y FECHA
 
@@ -236,10 +267,27 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
         echo date("d-m-Y",$dia)."<br/>";
     }
 
+//VARIABLES GLOBALES
+
+    $protocolo = $_SERVER['SERVER_PROTOCOL'];
+    $dominio = $_SERVER['HTTP_HOST'];
+    $uri = $_SERVER['REQUEST_URI'];
+    $url_completa = "$protocolo://$dominio$uri";
+
+    $metodo_http = $_SERVER['REQUEST_METHOD'];
+    $ip_cliente = $_SERVER['REMOTE_ADDR'];
+    $navegador_usuario = $_SERVER['HTTP_USER_AGENT'];
+
+    $_REQUEST['nombre'] //Obtiene el dato del input name=nombre del form
+
 //EXPRESIONES REGULARES
 
     preg_match("/patrón/", $texto); //Busca si el patrón existe en el texto. Devuelve 1 si encuentra coincidencias, 0 si no.
     preg_match_all("/patrón/", $texto); //Busca todas las coincidencias del patrón en el texto. Devuelve un array con las coincidencias.
+
+    preg_match_all("/patrón/", $texto, $coincidencias); //Busca todas las coincidencias del patrón en el texto. Mete los valores en $coincidencias
+    print_r($coincidencias[0]); //Imprime los encontrados
+
     preg_replace("/patrón/", "reemplazo", $texto); //Reemplaza todas las coincidencias del patrón en el texto con el texto de reemplazo.
     preg_split("/patrón/", $texto); //Divide el texto en un array usando el patrón como delimitador.
     preg_filter("/patrón/", "reemplazo", $texto); //Similar a preg_replace pero solo devuelve el texto si hubo reemplazos.
@@ -263,6 +311,12 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
     preg_match("/^[a-zA-Z0-9]{5,10}$/", "usuario123"); //Valida entre 5 y 10 caracteres alfanuméricos.
     preg_match("/^\d{3}-\d{2}-\d{4}$/", "123-45-6789"); //Valida un formato de número como SSN.
     preg_match("/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i", "correo@ejemplo.com"); //Valida un correo electrónico.
+    preg_match("/^[a-zA-Z0-9]+@(gmail||outlook|yahoo)\.(com|es)$/", "correo@yahoo.com"); //Valida otro tipo de correo
+    preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[A-Za-z0-9]{8,}$/", "Password123"); //Valida una contraseña con al menos 8 caracteres, una mayúscula, una minúscula y un número
+    preg_match("/^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-[0-9]{4}$/", "12-12-2024"); //Valida una fecha en formato "DD-MM–AAAA"
+    preg_match("/^[0-9]{8}[A-Za-z]$/", "12345678z"); //Valida un DNI
+
+    filter_var($email, FILTER_VALIDATE_EMAIL) //Otra forma de validad un Email
 
 //SESIONES
 
@@ -274,6 +328,8 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
 
     $_SESSION["favcolor"] = "yellow"; //Crear una variable en la sesion ["clave"] = "valor";
     print_r($_SESSION);
+
+    $user_id = uniqid("user_"); //Ofrece un id de usuario unico
 
 //COOKIES
 
@@ -291,6 +347,99 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
     echo "Cookie '" . $cookie_name . "' esta creada!<br>";
     echo "Valor: " . $_COOKIE[$cookie_name];
     }
+
+//FORMULARIOS
+    /*
+    <?php
+    $nameErr = $emailErr = $genderErr = $passwordErr = $telephoneErr = "";
+    $name = $email = $gender = $password = $telephone = "";
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["name"])) {
+        $nameErr = "Nombre obligatorio";
+    } else {
+        $name = test_input($_POST["name"]);
+        if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+        $nameErr = "Solo se permiten letras y espacios";
+        }
+    }
+    
+    if (empty($_POST["email"])) {
+        $emailErr = "Email obligatorio";
+    } else {
+        $email = test_input($_POST["email"]);
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $emailErr = "Formato inválido";
+        }
+    }
+        
+    if (empty($_POST["password"])) {
+        $passwordErr = "Contraseña obligatoria";
+    } else {
+        $password = test_input($_POST["password"]);
+        if (!preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[A-Za-z0-9]{8,}$/i",$password)) {
+        $passwordErr = "Contraseña no válida";
+        }
+    }
+
+    if (empty($_POST["telephone"])) {
+        $telephone = "";
+    } else {
+        $telephone = test_input($_POST["telephone"]);
+        if (!preg_match("/^[0-9]{6}$/i",$telephone)) {
+            $telephoneErr = "Telefono no válido";
+        }
+    }
+
+    if (empty($_POST["gender"])) {
+        $genderErr = "Género obligatorio";
+    } else {
+        $gender = test_input($_POST["gender"]);
+    }
+    }
+
+    function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+    }
+    ?>
+
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Validacion de formularios</title>
+        <style>
+            .error {color: #FF0000;}
+        </style>
+    </head>
+    <body>
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> <!--Para evitar injecciones en la url-->
+        Name: <input type="text" name="name" value="<?php echo $name;?>">
+        <span class="error">* <?php echo $nameErr;?></span><br>
+        E-mail: <input type="text" name="email" value="<?php echo $email;?>">
+        <span class="error">* <?php echo $emailErr;?></span><br>
+        Contraseña: <input type="password" name="password" value="<?php echo $password;?>">
+        <span class="error">* <?php echo $passwordErr;?></span><br>
+        Telefono: <input type="text" name="telephone" value="<?php echo $telephone;?>">
+        <span class="error"><?php echo $telephoneErr;?></span><br>
+        Gender:
+        <input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
+        <input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">Male
+        <input type="radio" name="gender" <?php if (isset($gender) && $gender=="other") echo "checked";?> value="other">Other  
+        <span class="error">* <?php echo $genderErr;?></span><br>
+        <input type="submit" name="submit" value="Submit">  
+    </form>
+
+    <?php
+    echo "<h2>Inputs:</h2>".$name."<br>".$email."<br>".$password."<br>".$telephone."<br>".$gender;
+    ?>
+    </body>
+    </html>
+    */
 
 //AJAX
     //Se utiliza AJAX para combinar JS y PHP. Y poder validar por ejemplo, formularios con php sin recargar la página
