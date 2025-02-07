@@ -21,21 +21,21 @@ include("../server/register.php");
                 </div>
                 <div>
                     <label>Email</label>
-                    <input type="text" value="" name="email" placeholder="Email"/>
-                    <p id="parrafoError"><?php if(isset($_GET['error_email'])){echo $_GET['error_email'];}?></p>
+                    <input type="text" name="email" id="email" placeholder="Email" onkeyup="verificarEmail()"/>
+                    <p class="parrafoError" id="email_status"><?php if(isset($_GET['error_email'])){echo $_GET['error_email'];}?></p>
                 </div>
                 <div>
                     <label>Contraseña</label>
                     <input type="password" value="" name="password" placeholder="Contraseña"/>
-                    <p id="parrafoError"><?php if(isset($_GET['error_pass'])){echo $_GET['error_pass'];}?></p>
+                    <p class="parrafoError"><?php if(isset($_GET['error_pass'])){echo $_GET['error_pass'];}?></p>
                 </div>
                 <div>
                     <label>Confirma tu contraseña</label>
                     <input type="password" value="" name="password_conf" placeholder="Confirma tu contraseña"/>
-                    <p id="parrafoError"><?php if(isset($_GET['error_pass_conf'])){echo $_GET['error_pass_conf'];}?></p>
+                    <p class="parrafoError"><?php if(isset($_GET['error_pass_conf'])){echo $_GET['error_pass_conf'];}?></p>
                 </div>
                 <div>
-                <p id="parrafoError"><?php if(isset($_GET['error'])){echo $_GET['error'];}?></p>
+                <p class="parrafoError"><?php if(isset($_GET['error'])){echo $_GET['error'];}?></p>
                     <input id="registrarse" type="submit" value="Crear cuenta" name="registrarse"/>
                 </div>
                 <div>
@@ -45,5 +45,6 @@ include("../server/register.php");
             </div>
         </form> 
     </main>
+    <script src="../scripts/verificarEmail.js"></script>
 </body>
 </html>

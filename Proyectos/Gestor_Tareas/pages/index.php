@@ -31,13 +31,13 @@ include("../server/gestor.php");
             <input type="text" name="descripcion" placeholder="Descripción" value="<?php if(isset($_POST["editar"])){echo $_SESSION["descripcion"];}?>" class="inputForm"/>
             <label>Fecha de vencimiento:</label>
             <input type="text" name="vencimiento" placeholder="Formato AAAA-MM-DD HH:MM:SS" value="<?php if(isset($_POST["editar"])){echo $_SESSION["fecha_vencimiento"];}?>" class="inputForm"/>
-            <input type="submit" name="crear" value="Crear" class="button"/>
+            <input type="button" name="crear" value="Crear" class="button" onclick="crearTarea()"/>
             <p class="parrafoError"><?php if(isset($_GET['error'])){echo $_GET['error'];}?></p>
         </form>
         <div>
             <?php if ($tarea_consulta->num_rows == 0) {echo "<h1>No hay tareas</h1>";} 
                 else {while ($tarea = $tarea_consulta -> fetch_assoc()){ ?>
-                <form action="index.php" method="POST" class="tarea">
+                <form id="form" action="index.php" method="POST" class="tarea">
                     <input type="hidden" name="codigo_tarea" value=<?php echo $tarea["codigo_tarea"]?>>
                     <label class="titulo"><?php echo $tarea["titulo"]?></label>
                     <label>Creada: <?php echo $tarea["fecha_creacion"]?></label>
@@ -54,5 +54,6 @@ include("../server/gestor.php");
     </div>
 </section>
 <script src="../scripts/desplegarForm.js"></script>
+<script src="../scripts/tasks.js"></script>
 </body>
 </html>

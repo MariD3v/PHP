@@ -38,7 +38,7 @@ if(isset($_POST['registrarse'])){
         $stmt1->store_result();
         
         if ($stmt1->num_rows != 0) {
-            header('Location: register.php?error_email=Ya existe una cuenta registrada con este email');
+            header('Location: register.php?error_email=Este email ya está registrado');
             exit();
         } else { //SI NO HAY ERRORES
 
