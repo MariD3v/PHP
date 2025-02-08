@@ -1,4 +1,4 @@
-function verificarEmail() {
+function checkEmail() {
     var email = document.getElementById("email").value;
     var emailStatus = document.getElementById("email_status");
 

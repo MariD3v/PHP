@@ -21,7 +21,7 @@ include("../server/register.php");
                 </div>
                 <div>
                     <label>Email</label>
-                    <input type="text" name="email" id="email" placeholder="Email" onkeyup="verificarEmail()"/>
+                    <input type="text" name="email" id="email" placeholder="Email" onkeyup="checkEmail()"/>
                     <p class="parrafoError" id="email_status"><?php if(isset($_GET['error_email'])){echo $_GET['error_email'];}?></p>
                 </div>
                 <div>
@@ -45,6 +45,6 @@ include("../server/register.php");
             </div>
         </form> 
     </main>
-    <script src="../scripts/verificarEmail.js"></script>
+    <script src="../scripts/checkEmail.js"></script>
 </body>
 </html>

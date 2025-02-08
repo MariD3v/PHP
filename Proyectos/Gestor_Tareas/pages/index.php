@@ -1,5 +1,5 @@
 <?php
-include("../server/gestor.php");
+include("../server/index.php");
 ?>
 
 <!DOCTYPE html>
