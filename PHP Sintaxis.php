@@ -278,7 +278,7 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
     $ip_cliente = $_SERVER['REMOTE_ADDR'];
     $navegador_usuario = $_SERVER['HTTP_USER_AGENT'];
 
-    $_REQUEST['nombre'] //Obtiene el dato del input name=nombre del form
+    $_REQUEST['nombre']; //Obtiene el dato del input name=nombre del form
 
 //EXPRESIONES REGULARES
 
@@ -316,7 +316,7 @@ include "archivo.php"; //Así añadimos un archivo php a este archivo
     preg_match("/^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-[0-9]{4}$/", "12-12-2024"); //Valida una fecha en formato "DD-MM–AAAA"
     preg_match("/^[0-9]{8}[A-Za-z]$/", "12345678z"); //Valida un DNI
 
-    filter_var($email, FILTER_VALIDATE_EMAIL) //Otra forma de validad un Email
+    filter_var($email, FILTER_VALIDATE_EMAIL); //Otra forma de validad un Email
 
 //SESIONES
 
